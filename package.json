@@ -1,0 +1,12 @@
+{
+  "name": "projeto-semestral",
+  "version": "1.0.0",
+  "main": "src/pages/home/index.html",
+  "license": "MIT",
+  "scripts": {
+    "start": "lite-server -c src/configs/bs-config.js"
+  },
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  }
+}

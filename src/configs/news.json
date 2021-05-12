@@ -1,0 +1,11 @@
+{
+  "news": [
+    {
+      "title": "Teste",
+      "category": "Politic",
+      "author": "Bruno",
+      "imageUrl": "aqui.jpg",
+      "text": "aiodjaiosjdioasdjioasjdioasjdiojsaiodjaisodjioasjdioasjdioasjd"
+    }
+  ]
+}
