@@ -3,6 +3,6 @@ module.exports = {
     "./src/**/*.{html,htm,css,js}"
   ],
   server: {
-    baseDir: ['./src/pages/home', './src']
+    baseDir: ['./src/pages/home', './src', '.']
   },
 };
