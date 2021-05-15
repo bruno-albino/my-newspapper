@@ -1,8 +1,8 @@
 :root {
-  --background-color-gray: rgb(206, 206, 206);
+  --background-color: white;
   --header-primary-color: steelblue;
-  --header-height: 40px;
-  --footer-height: 40px;
+  --header-height: auto;
+  --footer-height: auto;
 }
 
 * {
@@ -17,7 +17,7 @@ body {
   font-size: 14px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  background-color: var(--background-color-gray);
+  background-color: var(--background-color);
   padding-bottom: var(--footer-height);
 }
 
@@ -29,6 +29,7 @@ html, body, #root {
   background-color: var(--header-primary-color);
   padding: 5px;
   height: var(--header-height);
+  min-height: 40px;
 }
 
 .news-header nav {
@@ -58,10 +59,10 @@ html, body, #root {
 }
 
 .news-footer {
-  position: fixed;
+  font-size: 11px;
   width: 100%;
-  bottom: 0;
   height: var(--footer-height);
+  min-height: 40px;
   background-color: var(--header-primary-color);
   padding: 5px;
 
@@ -71,6 +72,37 @@ html, body, #root {
   color: white;
 }
 
+.news-wrapper {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.news-wrapper img {
+  width: 100%;
+}
+
+.news-wrapper article {
+  margin: 10px;
+  margin-bottom: 40px;
+  border-top: 1px solid black;
+  padding-top: 20px;
+}
+
+.news-wrapper article h2 {
+  margin-bottom: 10px;
+}
+
+.news-wrapper article span {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.news-wrapper article p {
+  text-indent: 15px;
+}
+
 
 @media (min-width: 800px) {
   body {
@@ -78,7 +110,11 @@ html, body, #root {
   }
 
   .news-footer {
-    width: calc(100% - 400px);
+    font-size: 14px;
+  }
+
+  .news-wrapper img {
+    padding: 30px;
   }
 }
 
