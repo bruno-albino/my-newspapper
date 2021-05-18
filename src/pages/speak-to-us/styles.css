@@ -1,0 +1,44 @@
+.news-footer {
+  position: fixed !important;
+}
+
+.speak-to-us-container {
+  padding: 60px 30px;
+}
+
+.speak-to-us-container h1 {
+  border-bottom: 1px solid black
+}
+
+#speak-to-us-form {
+  padding: 40px;
+}
+
+#speak-to-us-form button {
+  background-color: var(--header-primary-color);
+  transition: background-color 0.3s;
+}
+
+#speak-to-us-form button:hover {
+  background-color: var(--header-primary-color-hover);
+}
+
+#speak-to-us-form fieldset {
+  border: none;
+}
+
+#speak-to-us-form fieldset section {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+}
+
+#speak-to-us-form fieldset section:first-child{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+}
+
+#speak-to-us-form fieldset section label{
+  font-size: 20px;
+}

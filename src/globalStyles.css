@@ -1,6 +1,7 @@
 :root {
   --background-color: white;
   --header-primary-color: steelblue;
+  --header-primary-color-hover: rgb(65, 122, 168);
   --header-height: auto;
   --footer-height: auto;
 }
@@ -25,11 +26,46 @@ html, body, #root {
   height: 100%;
 }
 
+button {
+  height: 35px;
+  width: 150px;
+  font-size: 16px;
+  font-weight: 700;
+  border: none !important;
+  color: white;
+  border-radius: 8px;
+}
+
+input {
+  height: 35px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid black;
+  outline: none;
+  padding: 5px 5px 5px 15px;
+}
+
+textarea {
+  min-height: 70px;
+  font-size: 16px;
+  border-radius: 8px;
+  outline: none;
+  padding: 5px 5px 5px 15px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 .news-header {
   background-color: var(--header-primary-color);
   padding: 5px;
   height: var(--header-height);
   min-height: 40px;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .news-header nav {
@@ -70,10 +106,12 @@ html, body, #root {
   justify-content: space-between;
   align-items: center;
   color: white;
+  position: static;
+  bottom: 0;
 }
 
 .news-wrapper {
-  padding: 30px;
+  padding: 65px 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -109,8 +147,13 @@ html, body, #root {
     padding: 0px 200px;
   }
 
+  .news-header, .news-footer {
+    width: calc(100vw - 400px);
+  }
+
   .news-footer {
     font-size: 14px;
+    padding: 5px 30px;
   }
 
   .news-wrapper img {

@@ -1,6 +1,13 @@
+const TOTAL_RANDOM_PAGES = 6
+
 const getNewsByType = async type => {
+  const response = await getAllNews()
+  return response[type] || []
+}
+
+const getAllNews = async () => {
   const response = await fetch('../../configs/news.json').then(response => response.json())
-  return response.news[type] || []
+  return response.news
 }
 
 const init = async newsType => {
@@ -12,6 +19,30 @@ const init = async newsType => {
     mainElement.append(article)
   }
 }
+
+const initRandom = async () => {
+  const allNews = await getAllNews()
+  let serializedNews = []
+  Object.keys(allNews).forEach(key => {
+    serializedNews = serializedNews.concat(allNews[key])
+  })
+
+  const newsToAppend = []
+  for(let i = 0; i < TOTAL_RANDOM_PAGES; i++) {
+    const randomNews = getRandomItem(serializedNews)
+    newsToAppend.push(randomNews)
+    serializedNews = serializedNews.filter(news => randomNews !== news)
+  }
+
+  const mainElement = document.getElementById('random')
+
+  for(const news of newsToAppend) {
+    const article = appendNews(news)
+    mainElement.append(article)
+  }
+}
+
+const getRandomItem = items => items[Math.floor(Math.random()* items.length)]
 
 const appendNews = news => {
   const article = document.createElement('article')
@@ -42,14 +73,16 @@ const appendImageUrl = (news, element) => {
 }
 
 const appendText = (news, element) => {
-  const p = document.createElement('p')
-  p.innerHTML = news.text
-  element.appendChild(p)
+  const texts = news.text.split('<br>')
+  for(const text of texts) {
+    const p = document.createElement('p')
+    p.innerHTML = text
+    element.appendChild(p)
+  }
 }
 
 
 export default {
-  getNewsByType,
-  appendNews,
-  init
+  init,
+  initRandom
 }
