@@ -9,6 +9,9 @@
   <title>Site de Notícias - Início</title>
 </head>
 <body>
+  <div id='loader-wrapper' class="loader-wrapper">
+    <div class="loader"></div>
+  </div>
   <header class="news-header">
     <nav>
       <a href="../../pages/home/index.html" class='selected'>Início</a>
@@ -31,7 +34,12 @@
     <h4>Autor: Bruno da Silva Albino</h4>
   </footer>
 
-
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+  <script src="../../configs/index.js" type="module"></script>
+  <script src="../../services/news.js" type="module"></script>
   <script src="../../utils.js" type="module"></script>
   <script src="./index.js" type="module"></script>
 </body>

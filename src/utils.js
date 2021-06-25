@@ -1,17 +1,8 @@
+import newsService from './services/news.js'
 const TOTAL_RANDOM_PAGES = 6
 
-const getNewsByType = async type => {
-  const response = await getAllNews()
-  return response[type] || []
-}
-
-const getAllNews = async () => {
-  const response = await fetch('../../configs/news.json').then(response => response.json())
-  return response.news
-}
-
 const init = async newsType => {
-  const news = await getNewsByType(newsType)
+  const news = await newsService.getAllByType(newsType)
   const mainElement = document.getElementById(newsType)
 
   for(const educationNews of news) {
@@ -21,17 +12,13 @@ const init = async newsType => {
 }
 
 const initRandom = async () => {
-  const allNews = await getAllNews()
-  let serializedNews = []
-  Object.keys(allNews).forEach(key => {
-    serializedNews = serializedNews.concat(allNews[key])
-  })
+  let allNews = await newsService.getAll()
 
   const newsToAppend = []
   for(let i = 0; i < TOTAL_RANDOM_PAGES; i++) {
-    const randomNews = getRandomItem(serializedNews)
+    const randomNews = getRandomItem(allNews)
     newsToAppend.push(randomNews)
-    serializedNews = serializedNews.filter(news => randomNews !== news)
+    allNews = allNews.filter(news => randomNews !== news)
   }
 
   const mainElement = document.getElementById('random')
@@ -67,7 +54,7 @@ const appendAuthor = (news, element) => {
 
 const appendImageUrl = (news, element) => {
   const img = document.createElement('img')
-  img.alt = news.title[0]
+  img.alt = news.title.split(' ')[0]
   img.src = news.imageUrl
   element.appendChild(img)
 }
@@ -81,8 +68,13 @@ const appendText = (news, element) => {
   }
 }
 
+const removeLoader = () => {
+  const wrapper = document.getElementById('loader-wrapper')
+  wrapper.style.display = 'none'
+}
 
 export default {
   init,
-  initRandom
+  initRandom,
+  removeLoader
 }
