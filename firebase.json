@@ -7,7 +7,7 @@
       "**/node_modules/**"
     ],
     "redirects": [ {
-      "source": ".",
+      "source": "*",
       "destination": "/pages/home/index.html",
       "type": 301
     } ]
