@@ -3,16 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=100%, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="shortcut icon" type="image/x-icon" href="../../assets/ico/newspapper.ico" />
+
   <link rel="stylesheet" href="../../globalStyles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
   <title>Site de Notícias - Início</title>
 </head>
 <body>
   <div id='loader-wrapper' class="loader-wrapper">
     <div class="loader"></div>
   </div>
-  <header class="news-header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toggle" aria-controls="navbar-toggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Newspapper - Bruno Albino</a>
+    <div class="collapse navbar-collapse" id="navbar-toggle">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="../../pages/home/index.html">Início <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../../pages/education/index.html">Educação</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../../pages/health/index.html">Saúde</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../../pages/politics/index.html">Política</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../../pages/speak-to-us/index.html">Fale Conosco</a>
+        </li>
+      </ul>
+
+      <!-- LOGIN BTN -->
+      <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-primary mr-md-2">Entrar</button>
+      <!-- LOGIN BTN -->
+
+      <!-- LOGIN MODAL -->
+      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="loginModalTitle">Entre com sua conta</h5>
+            </div>
+            <form onsubmit="onSubmitLoginModal">
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="email">E-mail</label>
+                  <input type="email" class="form-control" id="email" placeholder="Seu e-mail">
+                </div>
+                <div class="form-group">
+                  <label for="password">Senha</label>
+                  <input type="password" class="form-control" id="password" placeholder="Insira sua senha">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Entrar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- LOGIN MODAL -->
+
+
+      <!-- ACCOUNT DROP DOWN -->
+      <div class="dropdown mr-md-2" id='account-dropdown' style="display: none;">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Minha Conta
+        </a>
+      
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="#">Sair</a>
+        </div>
+      </div>
+      <!-- ACCOUNT DROP DOWN -->
+
+      <!-- SEARCH NEWS -->
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar notícia" aria-label="Search">
+        <button class="btn btn-success my-2 my-sm-0" type="submit">Pesquisar</button>
+      </form>
+      <!-- SEARCH NEWS -->
+    </div>
+  </nav>
+  <!-- <header class="news-header">
     <nav>
       <a href="../../pages/home/index.html" class='selected'>Início</a>
       <a href="../../pages/education/index.html">Educação</a>
@@ -20,7 +100,7 @@
       <a href="../../pages/politics/index.html">Política</a>
       <a href="../../pages/speak-to-us/index.html">Fale Conosco</a>
     </nav>
-  </header>
+  </header> -->
   <main class='news-wrapper' id='random'>
     <h1>Notícias que chamaram a nossa atenção</h1>
   </main>
@@ -42,5 +122,9 @@
   <script src="../../services/news.js" type="module"></script>
   <script src="../../utils.js" type="module"></script>
   <script src="./index.js" type="module"></script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

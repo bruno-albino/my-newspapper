@@ -32,28 +32,41 @@ const initRandom = async () => {
 const getRandomItem = items => items[Math.floor(Math.random()* items.length)]
 
 const appendNews = news => {
-  const article = document.createElement('article')
-  appendTitle(news, article)
-  appendAuthor(news, article)
-  appendImageUrl(news, article)
-  appendText(news, article)
-  return article
+  const div = document.createElement('div')
+  const div2 = document.createElement('div')
+
+  div.className = 'card';
+  div2.className = 'card-body';
+  div.style.margin = '10px 0px';
+
+  appendTitle(news, div2)
+  appendText(news, div2)
+
+  div.appendChild(div2)
+  
+  appendAuthor(news, div)
+  appendImageUrl(news, div)
+
+  return div
 }
 
 const appendTitle = (news, element) => {
-  const h2 = document.createElement('h2')
-  h2.innerHTML = news.title
-  element.appendChild(h2)
+  const h5 = document.createElement('h5')
+  h5.className = 'card-title card-header';
+  h5.innerHTML = news.title
+  element.appendChild(h5)
 }
 
 const appendAuthor = (news, element) => {
-  const span = document.createElement('span')
-  span.innerHTML = `<strong>Autor:</strong> ${news.author}`
-  element.appendChild(span)
+  const small = document.createElement('small')
+  small.className = 'card-body text-muted'
+  small.innerHTML = `Autor: ${news.author}`
+  element.appendChild(small)
 }
 
 const appendImageUrl = (news, element) => {
   const img = document.createElement('img')
+  img.className = 'card-img-top'
   img.alt = news.title.split(' ')[0]
   img.src = news.imageUrl
   element.appendChild(img)
@@ -61,11 +74,16 @@ const appendImageUrl = (news, element) => {
 
 const appendText = (news, element) => {
   const texts = news.text.split('<br>')
+  const div = document.createElement('div');
   for(const text of texts) {
     const p = document.createElement('p')
+
+    p.className = 'card-text'
     p.innerHTML = text
-    element.appendChild(p)
+
+    div.appendChild(p)
   }
+  element.appendChild(div)
 }
 
 const removeLoader = () => {
