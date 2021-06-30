@@ -30,6 +30,19 @@ const getAllByType = async type => {
   })
 }
 
+const getAllByTitle = async title => {
+  return new Promise(resolve => {
+    db.collection('news').where('keywords', 'array-contains', title.toLowerCase()).get()
+    .then(querySnapshot => {
+      const items = []
+      querySnapshot.forEach(doc => {
+        items.push(serializeDoc(doc))
+      })
+      resolve(items)
+    })
+  })
+}
+
 const serializeDoc = doc => {
   return {
     id: doc.id,
@@ -40,7 +53,8 @@ const serializeDoc = doc => {
 const newsService = {
   createNews,
   getAll,
-  getAllByType
+  getAllByType,
+  getAllByTitle
 }
 
 export default newsService

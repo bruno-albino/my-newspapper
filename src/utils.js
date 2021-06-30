@@ -94,5 +94,6 @@ const removeLoader = () => {
 export default {
   init,
   initRandom,
-  removeLoader
+  removeLoader,
+  appendNews
 }
