@@ -1,4 +1,5 @@
 import newsService from './services/news.js'
+import authService from './services/auth.js'
 const TOTAL_RANDOM_PAGES = 6
 
 const init = async newsType => {
@@ -37,7 +38,7 @@ const appendNews = news => {
 
   div.className = 'card';
   div2.className = 'card-body';
-  div.style.margin = '10px 0px';
+  div.style.margin = '10px 0px'
 
   appendTitle(news, div2)
   appendText(news, div2)
@@ -46,6 +47,7 @@ const appendNews = news => {
   
   appendAuthor(news, div)
   appendImageUrl(news, div)
+  appendLikeButton(news, div)
 
   return div
 }
@@ -69,6 +71,7 @@ const appendImageUrl = (news, element) => {
   img.className = 'card-img-top'
   img.alt = news.title.split(' ')[0]
   img.src = news.imageUrl
+  img.style.padding = '10px 30px'
   element.appendChild(img)
 }
 
@@ -84,6 +87,43 @@ const appendText = (news, element) => {
     div.appendChild(p)
   }
   element.appendChild(div)
+}
+
+const appendLikeButton = async (news, element) => {
+  const user = await authService.getAuthenticatedUser()
+  const userHasLiked = !user ? false : (news.likes || []).includes(user.uid)
+
+  const div = document.createElement('div')
+  div.style.padding = '5px 30px'
+  const i = document.createElement('i')
+
+  i.className = 'fa fa-thumbs-up fa-3x'
+  i.style.color = userHasLiked ? 'blue' : 'gray'
+  i.style.cursor = 'pointer'
+  i.onclick = () => userHasLiked ? onUserDisLikeNews(news.id) : onUserLikeNews(news.id)
+
+  div.appendChild(i)
+  element.appendChild(div)
+}
+
+const onUserLikeNews = async newsId => {
+  const user = await authService.getAuthenticatedUser()
+  if (!user) {
+    alert('Entre com sua conta para curtir notícias')
+    return
+  }
+  await newsService.addUserLike(user.uid, newsId)
+  window.location.reload()
+}
+
+const onUserDisLikeNews = async newsId => {
+  const user = await authService.getAuthenticatedUser()
+  if (!user) {
+    alert('Entre com sua conta para curtir notícias')
+    return
+  }
+  await newsService.removeUserLike(user.uid, newsId)
+  window.location.reload()
 }
 
 const removeLoader = () => {

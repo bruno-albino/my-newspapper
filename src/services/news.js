@@ -43,6 +43,39 @@ const getAllByTitle = async title => {
   })
 }
 
+const addUserLike = async (userId, newsId) => {
+  const newsRef = db.collection('news').doc(newsId)
+  const likes = newsRef.likes || []
+  likes.push(userId)
+
+  await newsRef.update({ likes })
+}
+
+const removeUserLike = async (userId, newsId) => {
+  const newsRef = db.collection('news').doc(newsId)
+  const likes = newsRef.likes || []
+  const index = likes.findIndex(user => user === userId)
+  if(index !== -1) {
+    likes.splice(index, 1)
+  }
+
+  await newsRef.update({ likes })
+}
+
+const getLikedNewsByUserId = async userId => {
+  return new Promise(resolve => {
+    db.collection('news').where('likes', 'array-contains', userId).get()
+    .then(querySnapshot => {
+      const items = []
+      querySnapshot.forEach(doc => {
+        items.push(serializeDoc(doc))
+      })
+      resolve(items)
+    })
+  })
+}
+
+
 const serializeDoc = doc => {
   return {
     id: doc.id,
@@ -54,7 +87,10 @@ const newsService = {
   createNews,
   getAll,
   getAllByType,
-  getAllByTitle
+  addUserLike,
+  getAllByTitle,
+  removeUserLike,
+  getLikedNewsByUserId
 }
 
 export default newsService

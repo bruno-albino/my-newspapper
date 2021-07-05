@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <script src="../../elements/html-headers/index.js" ></script>
-  <html-main-headers></html-main-headers>
+class Header extends HTMLElement {
+  constructor() {
+    super();
+  }
 
-  <title>Site de Notícias - Início</title>
-</head>
-<body>  
-  <div id='loader-wrapper' class="loader-wrapper">
-    <div class="loader"></div>
-  </div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  teste() {
+    alert('foi')
+  }
+
+  connectedCallback() {
+    this.innerHTML = `<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toggle" aria-controls="navbar-toggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">Newspapper</a>
+    <a class="navbar-brand" onclick="() => this.teste()">Newspapper</a>
     <div class="collapse navbar-collapse" id="navbar-toggle">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
@@ -74,7 +72,7 @@
         </a>
       
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="../../pages/liked-news/index.html">Notícias curtidas</a>
+          <span class="dropdown-item"><a href="../../pages/liked-news/index.html"></a> Notícias curtidas</span>
           <span class="dropdown-item" id='logout-btn'>Sair</span>
         </div>
       </div>
@@ -87,35 +85,8 @@
       </form>
       <!-- SEARCH NEWS -->
     </div>
-  </nav>
-  <main class='news-wrapper' id='random'>
-    <h1>Notícias que chamaram a nossa atenção</h1>
+  </nav>`
+  }
+}
 
-  </main>
-  
-  <footer class='news-footer'>
-    <h4>Desenvolvedor: Bruno da Silva Albino</h4>
-    <div>
-      <h4>Copyright &copy</h4>
-      <h4>IFSP (Instituto Federal de Educação, Ciência e Tecnologia de São Paulo)</h4>
-    </div>
-    <h4>Autor: Bruno da Silva Albino</h4>
-  </footer>
-
-
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
-  <script src="../../configs/index.js" type="module"></script>
-  <script src="../../services/news.js" type="module"></script>
-  <script src="../../utils.js" type="module"></script>
-  <script src="./index.js" type="module"></script>
-</body>
-</html>
+customElements.define('newspapper-header', Header)

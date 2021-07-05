@@ -41,9 +41,10 @@ const verifyUserBehavior = () => {
       return
     }
     console.log(user.uid)
-    const db = firebase.firestore()
-    db.collection('admins').where('users', 'array-contains', user.uid).get()
-    .then(querySnapshot => console.log(querySnapshot.empty))
+    const isAdmin = await authService.isAdmin(user.uid)
+    console.log('isAdmin')
+    console.log(isAdmin)
+    
     authModalLoginBtn.style.display = 'none'
     accountDropdown.style.display = 'block'
   });
