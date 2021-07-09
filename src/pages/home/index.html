@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <script src="../../elements/html-headers/index.js" ></script>
+  <script src="../../scripts/html-headers.js" ></script>
   <html-main-headers></html-main-headers>
 
   <title>Site de Notícias - Início</title>
@@ -35,7 +35,7 @@
       </ul>
 
       <!-- LOGIN BTN -->
-      <button type="button" id='auth-modal-login-btn' data-toggle="modal" data-target="#authModal" class="btn btn-primary mr-md-2">Entrar</button>
+      <button type="button" style="display:none;" id='auth-modal-login-btn' data-toggle="modal" data-target="#authModal" class="btn btn-primary mr-md-2">Entrar</button>
       <!-- LOGIN BTN -->
 
       <!-- LOGIN MODAL -->
@@ -68,13 +68,14 @@
 
 
       <!-- ACCOUNT DROP DOWN -->
-      <div class="dropdown mr-md-2" id='account-dropdown' >
+      <div class="dropdown mr-md-2" style="display:none;" id='account-dropdown' >
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Minha Conta
         </a>
       
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <a class="dropdown-item" href="../../pages/liked-news/index.html">Notícias curtidas</a>
+          <a class="dropdown-item" id="add-news-link" style="display: none;" href="../../pages/add-news/index.html">Adicionar notícias</a>
           <span class="dropdown-item" id='logout-btn'>Sair</span>
         </div>
       </div>
@@ -112,10 +113,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-
   <script src="../../configs/index.js" type="module"></script>
   <script src="../../services/news.js" type="module"></script>
   <script src="../../utils.js" type="module"></script>
+  <script src="../../scripts/header.js" type="module"></script>
   <script src="./index.js" type="module"></script>
 </body>
 </html>

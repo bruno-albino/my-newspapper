@@ -1,6 +1,5 @@
 import newsService from './services/news.js'
 import authService from './services/auth.js'
-const TOTAL_RANDOM_PAGES = 6
 
 const init = async newsType => {
   const news = await newsService.getAllByType(newsType)
@@ -11,26 +10,6 @@ const init = async newsType => {
     mainElement.append(article)
   }
 }
-
-const initRandom = async () => {
-  let allNews = await newsService.getAll()
-
-  const newsToAppend = []
-  for(let i = 0; i < TOTAL_RANDOM_PAGES; i++) {
-    const randomNews = getRandomItem(allNews)
-    newsToAppend.push(randomNews)
-    allNews = allNews.filter(news => randomNews !== news)
-  }
-
-  const mainElement = document.getElementById('random')
-
-  for(const news of newsToAppend) {
-    const article = appendNews(news)
-    mainElement.append(article)
-  }
-}
-
-const getRandomItem = items => items[Math.floor(Math.random()* items.length)]
 
 const appendNews = news => {
   const div = document.createElement('div')
@@ -67,6 +46,9 @@ const appendAuthor = (news, element) => {
 }
 
 const appendImageUrl = (news, element) => {
+  if(!news.imageUrl) {
+    return
+  }
   const img = document.createElement('img')
   img.className = 'card-img-top'
   img.alt = news.title.split(' ')[0]
@@ -132,8 +114,6 @@ const removeLoader = () => {
 }
 
 export default {
-  init,
-  initRandom,
   removeLoader,
   appendNews
 }

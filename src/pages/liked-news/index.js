@@ -6,6 +6,7 @@ const likedNewsWrapper = document.getElementById('liked-news')
 const initLikedNews =  async () => {
   const user = await authService.getAuthenticatedUser()
   if(!user) {
+    return
     window.location.href = '/'
   }
 

@@ -1,7 +1,8 @@
 const db = firebase.firestore();
 
-const createNews = ({ title, author, text, imageUrl, type }) => {
-  return db.collection('news').add({ title, author, text, imageUrl, type })
+const createNews = ({ title, author, text, imageUrl = '', type }) => {
+  const keywords = text.split(' ').map(child => child.toLowerCase())
+  return db.collection('news').add({ title, author, text, imageUrl, type, keywords })
 }
 
 const getAll = () => {

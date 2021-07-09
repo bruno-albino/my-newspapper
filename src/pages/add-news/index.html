@@ -3,13 +3,11 @@
 <head>
   <script src="../../scripts/html-headers.js" ></script>
   <html-main-headers></html-main-headers>
-
-  <title>Site de Notícias - Educação</title>
+  
+  <link rel="stylesheet" href="./styles.css">
+  <title>Site de Notícias - Fale conosco</title>
 </head>
 <body>
-  <div id='loader-wrapper' class="loader-wrapper">
-    <div class="loader"></div>
-  </div>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toggle" aria-controls="navbar-toggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -20,8 +18,8 @@
         <li class="nav-item">
           <a class="nav-link" href="../../pages/home/index.html">Início</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="../../pages/education/index.html">Educação <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" href="../../pages/education/index.html">Educação</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../../pages/health/index.html">Saúde</a>
@@ -89,15 +87,57 @@
       <!-- SEARCH NEWS -->
     </div>
   </nav>
-
-  <main class='news-wrapper' id='education'>
-    <h1>Notícias - Educação</h1>
-  </main>
+  
+  <form id='add-news-form' class="p-5 speak-to-us-container">
+    <h1>Adicionar notícias</h1>
+    <div class="form-group">
+      <label for="inputTitle">Título</label>
+      <input type="text" class="form-control" id="inputTitle">
+      <div class="alert mt-2 alert-danger alert-title" role="alert">
+        Insira um título!
+      </div>
+      <div class="alert mt-2 alert-danger alert-title-max-length" role="alert">
+        Máximo de 50 caracteres!
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="inputAuthor">Autor</label>
+        <input type="text" class="form-control" id="inputAuthor">
+        <div class="alert mt-2 alert-danger alert-author" role="alert">
+          Insira um Autor!
+        </div>
+        <div class="alert mt-2 alert-danger alert-author-max-length" role="alert">
+          Máximo de 100 caracteres!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="categorySelect">Categoria</label>
+        <select class="form-control" id="categorySelect">
+          <option value='politics'>Política</option>
+          <option value='education'>Educação</option>
+          <option value='health'>Saúde</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputText">Texto</label>
+      <textarea class="form-control" id="inputText" rows="3"></textarea>
+      <div class="alert mt-2 alert-danger alert-text" role="alert">
+        Insira um texto!
+      </div>
+      <div class="alert mt-2 alert-danger alert-text-max-length" role="alert">
+        Máximo de 100 caracteres!
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </form>
+  
   <footer class='news-footer'>
     <h4>Desenvolvedor: Bruno da Silva Albino</h4>
     <h4>Autor: Bruno da Silva Albino</h4>
   </footer>
-  
+
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
@@ -106,11 +146,8 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+  
   <script src="../../configs/index.js" type="module"></script>
-  <script src="../../services/news.js" type="module"></script>
-  <script src="../../utils.js" type="module"></script>
-  <script src="../../configs/constants.js" type="module"></script>
   <script src="../../scripts/header.js" type="module"></script>
   <script src="./index.js" type="module"></script>
 </body>

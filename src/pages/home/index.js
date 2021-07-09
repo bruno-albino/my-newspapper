@@ -1,60 +1,28 @@
 import utils from '../../utils.js';
-import authService  from '../../services/auth.js'
-import { CONVERT_ERROR_MESSAGE } from '../../configs/convert-error-message.js'
+import newsService  from '../../services/news.js'
 
-utils.initRandom()
-.then(utils.removeLoader)
-.catch(utils.removeLoader)
+const TOTAL_RANDOM_PAGES = 6
 
-const searchForm = document.getElementById('search-form')
-const authForm = document.getElementById('auth-form')
+const init = async () => {
+  let allNews = await newsService.getAll()
 
-authForm.onsubmit = async e => {
-  e.preventDefault()
-  
-  const email = document.getElementById('auth-email-input').value
-  const password = document.getElementById('auth-password-input').value
+  const newsToAppend = []
+  for(let i = 0; i < TOTAL_RANDOM_PAGES; i++) {
+    const randomNews = getRandomItem(allNews)
+    newsToAppend.push(randomNews)
+    allNews = allNews.filter(news => randomNews !== news)
+  }
 
-  try {
-    await authService.authenticate({ email, password })
-    verifyUserBehavior()
-    $('#authModal').modal('hide')
-  } catch(err) {
-    alert(`deu errado: ${CONVERT_ERROR_MESSAGE[err.message] || err.message}`)
+  const mainElement = document.getElementById('random')
+
+  for(const news of newsToAppend) {
+    const article = utils.appendNews(news)
+    mainElement.append(article)
   }
 }
 
-searchForm.onsubmit = e => {
-  e.preventDefault()
-  const search = document.getElementById('search-input').value
-  window.location.href = `/pages/search/index.html?q=${search}`
-}
+init()
+.then(utils.removeLoader)
+.catch(utils.removeLoader)
 
-const verifyUserBehavior = () => {
-  const authModalLoginBtn = document.getElementById('auth-modal-login-btn')
-  const accountDropdown = document.getElementById('account-dropdown')
-
-  firebase.auth().onAuthStateChanged(async (user) => {
-    if(!user) {
-      authModalLoginBtn.style.display = 'block'
-      accountDropdown.style.display = 'none'
-      return
-    }
-    console.log(user.uid)
-    const isAdmin = await authService.isAdmin(user.uid)
-    console.log('isAdmin')
-    console.log(isAdmin)
-    
-    authModalLoginBtn.style.display = 'none'
-    accountDropdown.style.display = 'block'
-  });
-}
-
-
-const logoutBtn = document.getElementById('logout-btn')
-logoutBtn.onclick =  () => {
-  firebase.auth().signOut()
-  verifyUserBehavior()
-}
-
-verifyUserBehavior()
+const getRandomItem = items => items[Math.floor(Math.random()* items.length)]
